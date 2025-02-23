@@ -145,7 +145,9 @@ function getBook(id) {
 
 //destructuring
 
-const book = getBook(1);
+/*
+
+const book = getBook(3);
 // const title = book.title;
 // const author = book.author;
 
@@ -159,8 +161,8 @@ const {title,author,pages,publicationDate,genres,hasMovieAdaptation} = book
 // console.log(primaryGenre,SecGenre , otherGenres)
 
 //spread operator
-const newGenres = [...genres,"new genre"]
-newGenres;
+// const newGenres = [...genres,"new genre"]
+// newGenres;
 
 const updatedBook = {...book,
   //new prop
@@ -168,4 +170,150 @@ const updatedBook = {...book,
   //overwriting prop
   pages:1210};
 updatedBook;
+
+//templete literals
+const summary = `${title} by ${author} has ${pages+2} pages and was published on ${publicationDate.split("-")[0]}`;
+summary;
+
+//ternery operator
+
+// const pagesRange = pages > 1000 ? "Long book" : "short book";
+// pagesRange
+
+
+//normal way
+// function getYear(str){
+//   return str.split("-")[0];
+// }
+//arrow functions
+// const getYear = (str) => str.split("-")[0];
+// console.log(getYear(publicationDate))
+
+//short circuiting logical operator
+//all value except false,0,null,undefined are treated as true
+
+// console.log(true && 'Some string');
+// console.log(false && 'Some string');
+// console.log(hasMovieAdaptation && "This book has a movie");
+// console.log('Jonas' && 'Some string')
+// console.log(0 && "some string")
+// console.log(true || "some string")
+// console.log(false || "some string")
+// console.log(book.translations.spanish);
+// const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+// spanishTranslation
+
+//both thing but "no data" showing and in second 0 showing
+//using OR ||
+
+// console.log(book.reviews.librarything.reviewsCount)
+// const countWrong = book.reviews.librarything.reviewsCount || "NO DATA"
+// countWrong
+//new operator ?? (Nullish Coalescing Operator)
+
+// const count = book.reviews.librarything.reviewsCount ?? "no data"
+// count
+
+//optional chaining (?.) and also used ?? Nullish Coalescing Operator
+
+function getTotalReviewCount(book){
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book))
+
+*/
+
+/*
+
+//ARRAY MAP METHOD -> return new array
+const books = getBooks();
+const x = [1,2,3,4,5].map((el) => el*2);
+console.log(x);
+
+const titles = books.map((book)=>book.title)
+titles
+
+//with return
+// const essentialData = books.map((book) => {
+//   return{
+//     title: book.title,
+//     author: book.author,
+//   }
+// })
+
+//without return
+const essentialData = books.map((book) => ({
+    title: book.title,
+    author: book.author,
+}));
+essentialData
+
+//Filter method
+const longBooks = books.filter(book=>book.pages>600).filter(book=>book.hasMovieAdaptation)
+longBooks
+
+//filter+map
+const adventureBooks = books.filter(book=>book.genres.includes("adventure")).map(book=>book.title)
+adventureBooks
+
+//reduce method
+const pagesAllBooks = books.reduce((sum,book) =>sum+book.pages ,0)
+pagesAllBooks
+
+//array sort method
+const arr = [3,7,1,9,6];
+//a-b asc...b-a desc
+const sortedx = arr.sort((a,b)=>a-b);
+sortedx
+const sortedByPages = books.slice().sort((a,b)=>a.pages-b.pages)
+sortedByPages
+
+//immutable array workings
+// 1)add a book obj to array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
+const newBooks = [...books,newBook];
+newBooks;
+
+// 2) delete a book obj from array
+const booksAfterDelete =  newBooks.filter(book=>book.id !=4)
+booksAfterDelete
+
+// 3) update a book obj in array
+const updatedBooks = booksAfterDelete.map(book=>book.id === 2 ? {...book,title: "The Cyberiad: Fables for the Cybernetic Age"} : book)
+updatedBooks
+
+*/
+
+/*
+//Asyncronous JS PROMISES
+//normal way
+fetch("https://jsonplaceholder.typicode.com/todos")
+.then((res)=>res.json())
+.then((data)=>console.log(data))
+
+console.log("jonas")
+
+
+
+//async await 
+async function getTodos() {
+const res = await fetch("https://jsonplaceholder.typicode.com/todos")
+const data = await res.json();
+console.log(data);
+
+return data;
+
+}
+
+const todos = getTodos();
+console.log(todos)
+console.log("jonas")
+
+*/
 
